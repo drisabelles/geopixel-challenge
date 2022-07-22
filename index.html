@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Geopixel</title>
+  <style>
+    /* relogio */
+    .relogio {
+      height: 20.30rem;
+      width: 44rem;
+      background-color: olivedrab;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #hora {
+      height: 80px;
+      width: 150px;
+      color: #000;
+      border-radius: 10%;
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* manipulador */
+    .manipulador-itens {
+      height: 20.30rem;
+      width: 44rem;
+      background-color: peru;
+      display: flex;
+      align-items: center;
+      justify-content: center;        
+    }
+
+    .formulario {
+      margin: 10px 10px 20px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* bola tímida */
+    .bola {
+      height: 50px;
+      width: 50px;
+      background-color: red;
+      border: 1px solid red;
+      border-radius: 100%;
+      bottom: 0px;
+      right: 300px;
+      position: absolute;
+    }
+
+    .bola:hover {
+      bottom: 500px;
+    }
+  </style>
+</head>
+<body onload="startTime()">
+
+  <!-- relogio -->
+  <div class="relogio">
+    <div id="hora"></div>
+  </div>
+
+  <!-- manipulador itens -->
+  <div class="manipulador-itens">
+    <form id="formulario" action="">
+      <div class="formulario">
+        <select name="itens" id="itens">
+          <option value="select" selected>Selecione uma opção</option>
+            <option value="item1">Brasil</option>
+        </select>
+      </div>
+      <div class="formulario">
+        <input id="item" name="item" size="20" type="text" placeholder="Insira um item">
+      </div>
+      <div class="formulario">
+        <button id="adicionar" type="submit" value="adicionar">Adicionar</button>
+        <button id="remover" type="reset" value="remover">Remover</button>
+        <button id="limpar" type="reset" value="limpar">Limpar caixa</button>
+      </div>
+      <p class="formulario">Selecione uma opção</p>
+    </form>
+  </div>
+
+  <!-- bola tímida -->
+  <div class="bola"> </div>
+
+</body>
+<script type="text/javascript">
+
+  // relogio //
+  function startTime()
+  {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('hora').innerHTML = h+":"+m+":"+s;
+  t = setTimeout('startTime()',500);
+  }
+
+  function checkTime(i)
+  {
+  if (i<10)
+  {
+  i="0" + i;
+  }
+  return i;
+  }
+
+  // manipulador de itens //
+  const btn = document.querySelector("#adicionar");
+
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+    const item = document.querySelector("#item");
+    if (item == true) {
+      console.log("Item já adicionado.")
+    }
+    else {
+      const value = item.value;
+      console.log(value);
+    }
+
+  });
+  </script>
+
+</html>
